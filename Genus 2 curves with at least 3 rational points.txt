@@ -1,0 +1,23 @@
+A:={};
+for n in [42, 46, 52, 57, 60, 62, 66, 67, 68, 69, 72, 73, 74, 77, 80, 85, 87, 91, 92, 98, 103, 104, 107, 111, 121, 125, 143, 167, 191] do
+//for the above values of n X_0(n) is hyperelliptic
+X:= X0NQuotient(n,[n]);
+if Genus(X) eq 2 then
+A:=Include(A,n);
+end if;
+end for;
+A;
+#A;
+B:={};
+for m in A do
+C:= X0NQuotient(m,[m]); 
+//Genus(C);
+Y,f:=SimplifiedModel(C);
+f1:=Inverse(f);
+cuspsY:= Points(Y: Bound:=100);
+if #cuspsY ge 3 then
+B:=Include(B,m);
+end if;
+end for;
+B;
+#B;

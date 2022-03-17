@@ -1,0 +1,36 @@
+// This code gives the new set by removing the values of N which does not satisfy the the inequality (i) in Lemma 4
+X:= [1..563];
+for p in [1..563] do
+if IsPrime(p) eq true then
+for n in X do
+P:=Divisors(n);
+Primedivisor:=PrimeDivisors(n);
+w:= #Primedivisor;
+if p notin P then
+if SumOfDivisors(n) gt (12/(p-1))*(6*((p+1)^2)-(2^w)) then
+X:=Exclude(X,n);
+end if;
+end if;
+end for;
+end if;
+end for;
+X;
+
+*****************************************************************
+//This code gives the values of N which does not satisfy the the inequality (i) in Lemma 4
+X:= {};
+for p in [1..563] do
+if IsPrime(p) eq true then
+for n in [1..563] do
+P:=Divisors(n);
+Primedivisor:=PrimeDivisors(n);
+w:= #Primedivisor;
+if p notin P then
+if SumOfDivisors(n) gt (12/(p-1))*(6*((p+1)^2)-(2^w)) then
+X:=Include(X,n);
+end if;
+end if;
+end for;
+end if;
+end for;
+X;
